@@ -28,19 +28,17 @@
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.imageOfTheDay.url}"
-                android:contentDescription="@{viewModel.imageOfTheDay.title}"/>
+                app:imageUrl="@{viewModel.imageOfTheDay}"
+                android:contentDescription="@string/this_is_nasa_s_picture_of_day_showing_nothing_yet"/>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
+                android:padding="@dimen/default_spacing"
+                android:textAppearance="@style/CustomHedline6"
                 android:layout_gravity="bottom"
-                android:background="#55010613"
+                android:background="@color/textview_background"
                 android:text="@string/image_of_the_day" />
         </FrameLayout>
 
@@ -48,6 +46,8 @@
             android:id="@+id/asteroid_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:padding="16dp"
+            android:clipToPadding="false"
             app:viewVisibility="@{viewModel.recyclerViewVisible}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -7,7 +7,7 @@
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.models.Asteroid" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:asteroidStatusImage="@{asteroid.potentiallyHazardous}"
+            android:contentDescription="@string/is_potentially_hazardous_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +30,7 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="@dimen/default_spacing"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day">
@@ -48,22 +49,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/close_approach_data_title"
-                        android:textColor="@color/default_text_color" />
+                        android:contentDescription="@string/close_approach_data_title"
+                        android:textAppearance="@style/CustomTextTitle"/>
 
                     <TextView
                         android:id="@+id/close_approach_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="@{asteroid.closeApproachDate}"
-                        android:textColor="@color/default_text_color"
+                        android:layout_marginTop="@dimen/min_spacing"
+                        app:approachDateString="@{asteroid}"
+                        android:textAppearance="@style/CustomText"
                         tools:text="2020-02-01" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/default_spacing"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -77,14 +79,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/absolute_magnitude_title"
-                            android:textColor="@color/default_text_color" />
+                            android:contentDescription="@string/absolute_magnitude_title"
+                            android:textAppearance="@style/CustomTextTitle"/>
 
                         <TextView
                             android:id="@+id/absolute_magnitude"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/default_text_color"
+                            android:layout_marginTop="@dimen/min_spacing"
+                            android:textAppearance="@style/CustomText"
                             app:astronomicalUnitText="@{asteroid.absoluteMagnitude}"
                             tools:text="25.126 au" />
                     </LinearLayout>
@@ -93,7 +96,8 @@
                         android:id="@+id/help_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:padding="@dimen/default_spacing"
+                        android:contentDescription="@string/help_button"
                         app:srcCompat="@drawable/ic_help_circle" />
 
                 </LinearLayout>
@@ -103,46 +107,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/estimated_diameter_title"
-                    android:textColor="@color/default_text_color" />
+                    android:contentDescription="@string/estimated_diameter_title"
+                    android:textAppearance="@style/CustomTextTitle"/>
 
                 <TextView
                     android:id="@+id/estimated_diameter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/default_text_color"
+                    android:layout_marginTop="@dimen/min_spacing"
+                    android:textAppearance="@style/CustomText"
                     app:kmUnitText="@{asteroid.estimatedDiameter}"
                     tools:text="0.82 km" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/default_spacing"
                     android:text="@string/relative_velocity_title"
-                    android:textColor="@color/default_text_color" />
+                    android:contentDescription="@string/relative_velocity_title"
+                    android:textAppearance="@style/CustomTextTitle"/>
 
                 <TextView
                     android:id="@+id/relative_velocity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/default_text_color"
+                    android:layout_marginTop="@dimen/min_spacing"
+                    android:textAppearance="@style/CustomText"
                     app:velocityText="@{asteroid.relativeVelocity}"
                     tools:text="11.9 km/s" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/default_spacing"
                     android:text="@string/distance_from_earth_title"
-                    android:textColor="@color/default_text_color" />
+                    android:contentDescription="@string/distance_from_earth_title"
+                    android:textAppearance="@style/CustomTextTitle"/>
 
                 <TextView
                     android:id="@+id/distance_from_earth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/default_text_color"
+                    android:layout_marginTop="@dimen/min_spacing"
+                    android:textAppearance="@style/CustomText"
                     app:astronomicalUnitText="@{asteroid.distanceFromEarth}"
                     tools:text="0.0924 au" />
 

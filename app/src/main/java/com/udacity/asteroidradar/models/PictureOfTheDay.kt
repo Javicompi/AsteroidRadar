@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.models
 
 import androidx.annotation.Nullable
 import com.squareup.moshi.Json
@@ -13,21 +13,8 @@ data class PictureOfTheDay(
         val date: String,
         val copyright: String? = "",
         val explanation: String
-        ) /*{
-
-    fun toEntity(): ImageOfTheDayEntity {
-        return ImageOfTheDayEntity(
-                1,
-                mediaType,
-                title,
-                url,
-                hdurl,
-                date,
-                copyright ?: "",
-                explanation
         )
-    }
-}*/
+
 fun PictureOfTheDay.toEntity(): ImageOfTheDayEntity {
     return ImageOfTheDayEntity(
             1,

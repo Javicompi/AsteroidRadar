@@ -2,9 +2,7 @@ package com.udacity.asteroidradar.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.utils.dateToString
-import com.udacity.asteroidradar.utils.stringToDate
+import com.udacity.asteroidradar.models.Asteroid
 import java.util.*
 
 @Entity(tableName = "asteroids")
@@ -12,7 +10,7 @@ data class AsteroidEntity(
         @PrimaryKey
         val id: Long,
         val codename: String,
-        val closeApproachDate: String,
+        val closeApproachDate: Date,
         val absoluteMagnitude: Double,
         val estimatedDiameter: Double,
         val relativeVelocity: Double,

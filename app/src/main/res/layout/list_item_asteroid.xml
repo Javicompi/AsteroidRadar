@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="asteroid"
-            type="com.udacity.asteroidradar.Asteroid" />
+            type="com.udacity.asteroidradar.models.Asteroid" />
         
         <variable
             name="clickListener"
@@ -18,26 +19,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/small_spacing"
         android:onClick="@{() -> clickListener.onClick(asteroid)}">
 
         <TextView
             android:id="@+id/codename_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textAppearance="@style/CustomTextTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:asteroidCodenameString="@{asteroid}"/>
+            app:asteroidCodenameString="@{asteroid}"
+            tools:text="NGC 346: Star Forming Cluster in the SMC"/>
 
         <TextView
             android:id="@+id/date_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textAppearance="@style/CustomText"
+            android:layout_marginTop="@dimen/small_spacing"
             app:layout_constraintTop_toBottomOf="@id/codename_textview"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:asteroidDateString="@{asteroid}"/>
+            app:approachDateString="@{asteroid}"
+            tools:text="2020-12-01"/>
 
         <ImageView
             android:id="@+id/is_hazardous_imageview"

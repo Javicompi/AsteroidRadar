@@ -1,35 +1,23 @@
-package com.udacity.asteroidradar
+package com.udacity.asteroidradar.models
 
 import android.os.Parcelable
 import com.udacity.asteroidradar.database.AsteroidEntity
+import com.udacity.asteroidradar.utils.dateToString
 import com.udacity.asteroidradar.utils.stringToDate
 import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 @Parcelize
 data class Asteroid(
         val id: Long,
         val codename: String,
-        val closeApproachDate: String,
+        val closeApproachDate: Date,
         val absoluteMagnitude: Double,
         val estimatedDiameter: Double,
         val relativeVelocity: Double,
         val distanceFromEarth: Double,
         val isPotentiallyHazardous: Boolean
-) : Parcelable /*{
-
-    fun toEntity(): AsteroidEntity {
-        return AsteroidEntity(
-                id,
-                codename,
-                closeApproachDate,
-                absoluteMagnitude,
-                estimatedDiameter,
-                relativeVelocity,
-                distanceFromEarth,
-                isPotentiallyHazardous
-        )
-    }
-}*/
+) : Parcelable
 
 fun List<Asteroid>.toEntityList(): List<AsteroidEntity> {
     return map {
@@ -45,4 +33,8 @@ fun List<Asteroid>.toEntityList(): List<AsteroidEntity> {
                 isPotentiallyHazardous = it.isPotentiallyHazardous
         )
     }
+}
+
+fun Asteroid.closeApproachDateToString(): String {
+    return dateToString(closeApproachDate)
 }

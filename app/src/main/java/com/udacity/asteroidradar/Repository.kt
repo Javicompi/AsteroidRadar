@@ -2,12 +2,17 @@ package com.udacity.asteroidradar
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.api.NasaApi
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
-import com.udacity.asteroidradar.database.AppDatabase
-import com.udacity.asteroidradar.database.toModel
-import com.udacity.asteroidradar.database.toModelList
+import com.udacity.asteroidradar.database.*
+import com.udacity.asteroidradar.models.Asteroid
+import com.udacity.asteroidradar.models.PictureOfTheDay
+import com.udacity.asteroidradar.models.toEntity
+import com.udacity.asteroidradar.models.toEntityList
+import com.udacity.asteroidradar.utils.getNextWeekLong
+import com.udacity.asteroidradar.utils.getTodayLong
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -15,16 +20,6 @@ import org.json.JSONObject
 class Repository(private val database: AppDatabase) {
 
     private val TAG ="Repository"
-
-    val imageOfDay: LiveData<PictureOfTheDay> =
-            Transformations.map(database.imageOfTheDayDao().getImageOfTheDay()) {
-                it?.toModel()
-            }
-
-    val asteroids: LiveData<List<Asteroid>> =
-            Transformations.map(database.asteroidDao().getAllAsteroids()) {
-                it?.toModelList()
-            }
 
     suspend fun updateImageOfTheDay() {
         withContext(Dispatchers.IO) {
@@ -46,6 +41,39 @@ class Repository(private val database: AppDatabase) {
                 Log.d(TAG, "Asteroids: ${asteroids.size}")
                 database.asteroidDao().insertAsteroids(asteroids.toEntityList())
             }
+        }
+    }
+
+    fun getAllAsteroids(): LiveData<List<Asteroid>> {
+        Log.d(TAG, "getAllAsteroids")
+        return Transformations.map(database.asteroidDao().getAllAsteroids()) {
+            Log.d(TAG, "getAllAsteroids: ${it.size}")
+            it?.toModelList()
+        }
+    }
+
+    fun getTodayAsteroids(): LiveData<List<Asteroid>> {
+        Log.d(TAG, "getTodayAsteroids")
+        return Transformations.map(database.asteroidDao().getTodayAsteroids(getTodayLong())) {
+            Log.d(TAG, "todayLong: ${getTodayLong()}")
+            Log.d(TAG, "getTodayAsteroids: ${it.size}")
+            it?.toModelList()
+        }
+    }
+
+    fun getWeekAsteroids(): LiveData<List<Asteroid>> {
+        Log.d(TAG, "getWeekAsteroids")
+        return Transformations.map(
+            database.asteroidDao().getNextWeekAsteroids(getTodayLong(), getNextWeekLong())) {
+            Log.d(TAG, "getWeekAsteroids: ${it.size}")
+            it?.toModelList()
+        }
+    }
+
+    fun getImageOfTheDay(): LiveData<PictureOfTheDay> {
+        return Transformations.map(database.imageOfTheDayDao().getImageOfTheDay()) {
+            Log.d(TAG, "Title: ${it.title}")
+            it?.toModel()
         }
     }
 }

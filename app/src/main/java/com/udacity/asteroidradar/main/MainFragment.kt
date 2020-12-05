@@ -1,7 +1,6 @@
 package com.udacity.asteroidradar.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -9,18 +8,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
-import com.udacity.asteroidradar.utils.dateToString
-import com.udacity.asteroidradar.utils.stringToDate
-import java.util.*
 
 class MainFragment : Fragment() {
 
-    private val TAG = "MainFragment"
-
     private val viewModel: MainViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onViewCreated()"
-        }
+        val activity = requireNotNull(this.activity)
         ViewModelProviders.of(activity, MainViewModelFactory(activity.application))
                 .get(MainViewModel::class.java)
     }
@@ -61,6 +53,20 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return true
+        return when (item.itemId) {
+            R.id.show_week_menu -> {
+                viewModel.selectedFilter.value = Filter.WEEK
+                true
+            }
+            R.id.show_today_menu -> {
+                viewModel.selectedFilter.value = Filter.TODAY
+                true
+            }
+            R.id.show_all_menu -> {
+                viewModel.selectedFilter.value = Filter.ALL
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

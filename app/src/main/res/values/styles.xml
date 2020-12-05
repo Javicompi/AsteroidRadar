@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomText" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/default_text_color</item>
+    </style>
+
+    <style name="CustomTextTitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CustomHedline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

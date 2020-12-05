@@ -1,7 +1,8 @@
 package com.udacity.asteroidradar.api
 
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.models.Asteroid
 import com.udacity.asteroidradar.utils.Constants
+import com.udacity.asteroidradar.utils.stringToDate
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,8 +33,9 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
                 .getDouble("astronomical")
             val isPotentiallyHazardous = asteroidJson
                 .getBoolean("is_potentially_hazardous_asteroid")
+            val approachDate = stringToDate(formattedDate)
 
-            val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
+            val asteroid = Asteroid(id, codename, approachDate, absoluteMagnitude,
                 estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
             asteroidList.add(asteroid)
         }

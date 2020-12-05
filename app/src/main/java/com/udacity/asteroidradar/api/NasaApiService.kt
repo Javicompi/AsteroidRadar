@@ -1,7 +1,7 @@
 package com.udacity.asteroidradar.api
 
+import com.udacity.asteroidradar.models.PictureOfTheDay
 import com.udacity.asteroidradar.utils.Constants
-import com.udacity.asteroidradar.PictureOfTheDay
 import retrofit2.Retrofit
 import retrofit2.http.GET
 
