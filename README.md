@@ -1,9 +1,5 @@
-# Purpose of this Folder
+# Udacity Android Kotlin Nanodegree project
 
-This folder should contain the scaffolded project files to get a student started on their project. This repo will be added to the Classroom for students to use, so please do not have any solutions in this folder.
+2nd project in the Udacity Nanodegree program reviewing MVVM Architecture, RecyclerView, Room, Retrofit and Worker.
 
-## Note: Android Kotlin Gradle Update
-Use the updated Gradle version in the `~/gradle/wrapper/gradle-wrapper.properties` file:
-```
-distributionUrl = https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
-```
+The app updates the data everyday through the NASA API. Uses a RecyclerView to show a list of the upcoming asteroids within the next week. And also shows the image of the day.
